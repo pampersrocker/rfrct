@@ -29,16 +29,20 @@ prop_next %}
 
 
                     {{ render_field_with_errors(login_user_form.password) }}
-                    <div class="row">
-                        <span class="col">{{ login_user_form.remember.label }}</span>
-                        <span class="col-auto">
-                            <label class="form-check form-check-single form-switch">
-                                {{ login_user_form.remember(class="form-check-input") }}
-                            </label>
-                        </span>
+                    <div class="mb-3">
+                        <div class="row">
+                            <span class="col">{{ login_user_form.remember.label }}</span>
+                            <span class="col-auto">
+                                <label class="form-check form-check-single form-switch">
+                                    {{ login_user_form.remember(class="form-check-input") }}
+                                </label>
+                            </span>
+                        </div>
                     </div>
                     {{ render_field_errors(login_user_form.csrf_token) }}
-                    {{ login_user_form.submit(class="btn btn-primary btn-block") }}
+                    <div class="mb-3">
+                        {{ login_user_form.submit(class="btn btn-primary btn-block") }}
+                    </div>
 
             </form>
             {% if security.webauthn %}

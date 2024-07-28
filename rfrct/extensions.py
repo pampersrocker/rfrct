@@ -11,7 +11,7 @@ from flask_admin import Admin
 from flask_mongoengine import MongoEngine
 from flask_static_compress import FlaskStaticCompress
 from flask_socketio import SocketIO
-
+from flask_nav import Nav
 
 toolbar = None
 
@@ -26,9 +26,7 @@ compress = FlaskStaticCompress()
 security = Security()
 db = nosql
 io = SocketIO()
-
-from flask_login import LoginManager
-login_manager = LoginManager()
+nav = Nav()
 
 def security_init_kwargs():
     """

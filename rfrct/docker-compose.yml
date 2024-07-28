@@ -1,0 +1,19 @@
+services:
+  rfrct:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./log:/home/nonroot/code/tmp/
+    environment:
+      - MONGO_HOST=mongodb
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+volumes:
+  mongodb-data:

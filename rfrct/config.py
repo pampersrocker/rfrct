@@ -44,9 +44,9 @@ class Config(object):
     # be sure to use username and password in production
     MONGODB_SETTINGS = [
         {
-            "db": "rfrct",
-            "host": "localhost",
-            "port": 27017,
+            "db": os.environ.get("MONGO_DB", "rfrct"),
+            "host": os.environ.get("MONGO_HOST", "localhost"),
+            "port": int(os.environ.get("MONGO_PORT", 27017)),
             "alias": "default"
         }
     ]
@@ -94,6 +94,7 @@ class Config(object):
         'extensions.admin',
         'extensions.compress',
         'extensions.io',
+        'extensions.nav',
     ]
 
     # see example/ for reference
@@ -101,6 +102,7 @@ class Config(object):
     # ex: BLUEPRINTS = [('blog', {'url_prefix': '/myblog'})]  # where `blog` is a Blueprint instance
     BLUEPRINTS: List = [
         ('home', {'url_prefix': '/'}),
+        'material',
     ]
 
 
