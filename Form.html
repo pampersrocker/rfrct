@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html data-theme="dark" style="color-scheme: dark;">
+<head>
+    <title>Laser Usage Form</title>
+    
+</head>
+<body class="theme-dark-auto">
+    <div class="page">
+        <div class="page-wrapper">
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="row row-cards">
+                    <div class="col-12">
+                        <form class="card" id="usageForm">
+                            <div class="card-header"><h4 class="card-title">Laser Usage Form</h4></div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label" for="width">Width:</label>
+                                    <input class="form-control" type="number" id="width" name="width" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="height">Height:</label>
+                                    <input class="form-control" type="number" id="height" name="height" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="material">Material:</label>
+                                    <select class="form-select" id="material" name="material" required>
+                                        <option value="wood">Wood</option>
+                                        <option value="acrylic">Acrylic</option>
+                                        <option value="metal">Metal</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="time">Time Used</label>
+                                    <div class="input-group input-group-flat">
+                                        <input class="form-control text-end pe-0" data-mask="00/00/0000" type="text" data-mask-visible="true" id="time" name="time" autocomplete="off" placeholder="00" required>
+                                        <span class="input-group-text">
+                                           &nbsp;minutes
+                                        </span>
+                                      </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="price">Overall Price:</label>
+                                    <input class="form-control" type="text" id="price" name="price" readonly>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const form = document.getElementById('usageForm');
+        const priceInput = document.getElementById('price');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+            const material = document.getElementById('material').value;
+            const time = parseInt(document.getElementById('time').value);
+
+            // Perform async calculation of overall price
+            const price = await calculatePrice(width, height, material, time);
+
+            priceInput.value = price;
+        });
+
+        // Add event listeners to recalculate price whenever a value changes
+        const inputs = document.querySelectorAll('#usageForm input, #usageForm select');
+        inputs.forEach(input => {
+            input.addEventListener('change', async () => {
+                const width = parseInt(document.getElementById('width').value);
+                const height = parseInt(document.getElementById('height').value);
+                const material = document.getElementById('material').value;
+                const time = parseInt(document.getElementById('time').value);
+
+                // Perform async calculation of overall price
+                const price = await calculatePrice(width, height, material, time);
+
+                priceInput.value = price;
+            });
+        });
+
+        async function calculatePrice(width, height, material, time) {
+            // Perform your price calculation logic here
+            // You can make an API call or perform any other calculations
+
+            // For demonstration purposes, let's assume a simple calculation
+            const basePrice = 0.1; // Price per square inch
+            const area = width * height;
+            const materialMultiplier = getMaterialMultiplier(material);
+
+            const totalPrice = basePrice * area * materialMultiplier * time;
+
+            return totalPrice.toFixed(2);
+        }
+
+        function getMaterialMultiplier(material) {
+            switch (material) {
+                case 'wood':
+                    return 1.0;
+                case 'acrylic':
+                    return 1.5;
+                case 'metal':
+                    return 2.0;
+                default:
+                    return 1.0;
+            }
+        }
+    </script>
+</body>
+</html>
