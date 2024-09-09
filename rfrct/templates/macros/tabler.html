@@ -1,0 +1,42 @@
+{% macro tabler_field_StringField(field) %}
+<div class="mb-3">
+    <label class="form-label {% if field.flags.required %}required{% endif %}" for="{{ field.id }}">{{ field.label }}</label>
+    <input type="text" class="form-control" id="{{ field.id }}" name="{{ field.name }}" value="{{ field.data }}" placeholder="{{ field.meta['placeholder'] }}">
+    {% if field.errors %}
+        <div class="invalid-feedback">
+            {% for error in field.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro tabler_field_CSRFTokenField(field) %}
+{% endmacro %}
+
+{% macro tabler_field_DateField(field) %}
+<div class="mb-3">
+    <label class="form-label {% if field.flags.required %}required{% endif %}" for="{{ field.id }}">{{ field.label }}</label>
+    <input class="form-control" placeholder="Select a date" id="{{ field.id }}" name="{{ field.name }}" value="{{ field.data }}">
+    {% if field.errors %}
+        <div class="invalid-feedback">
+            {% for error in field.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro tabler_field_DecimalField(field) %}
+<div class="mb-3">
+    <label class="form-label {% if field.flags.required %}required{% endif %}" for="{{ field.id }}">{{ field.label }}</label>
+    <div class="input-group mb-2">
+        <input type="number" class="form-control" placeholder="" autocomplete="off" placeholder="{{ field.meta['placeholder'] }}">
+        <span class="input-group-text">
+        {{field.meta['symbol']}}
+        </span>
+    </div>
+</div>
+{% endmacro %}

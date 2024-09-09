@@ -23,7 +23,7 @@ class Material(nosql.Document):
     #material_type = nosql.ReferenceField(MaterialType)
     created_at = nosql.DateTimeField(default=datetime.datetime.now)
     updated_at = nosql.DateTimeField(default=datetime.datetime.now)
-    price_per_square_meter = nosql.DecimalField(min_value=0, required=True)
+    price_per_square_meter = nosql.DecimalField(min_value=0, required=True, symbol="mm")
     thickness = nosql.DecimalField(min_value=0, required=True)
 
     def __unicode__(self):

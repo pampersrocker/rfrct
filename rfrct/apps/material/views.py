@@ -13,7 +13,7 @@ def index():
 
 @app.route('/create')
 def create():
-    form = model_form(Material)()
+    form = model_form(Material, exclude=["updated_at", "created_at"])()
     if form.validate_on_submit():
         material = Material()
         form.populate_obj(material)

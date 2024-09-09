@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-{% from "macros/_formhelpers.html" import render_field_with_errors, render_field, render_field_errors,
-render_form_errors,
-prop_next %}
+{% from "macros/_formhelpers.html" import tabler_form %}
 
 {% block content %}
 <div class="container-xl">
@@ -11,11 +9,7 @@ prop_next %}
 
             <form action="{{url_for('material.create')}}" method="POST" class="card">
 
-                {% for field in form %}
-                {{ render_field(field) }}
-                {% endfor %}
-
-                <input type="submit" value="Create">
+                {{ tabler_form(form) }}
             </form>
         </div>
     </div>
