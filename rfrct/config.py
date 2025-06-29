@@ -95,6 +95,7 @@ class Config(object):
         'extensions.compress',
         'extensions.io',
         'extensions.nav',
+        'extensions.tabler',
     ]
 
     # see example/ for reference

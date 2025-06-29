@@ -12,6 +12,7 @@ from flask_mongoengine import MongoEngine
 from flask_static_compress import FlaskStaticCompress
 from flask_socketio import SocketIO
 from flask_nav import Nav
+from flask_tabler import Tabler
 
 toolbar = None
 
@@ -27,6 +28,9 @@ security = Security()
 db = nosql
 io = SocketIO()
 nav = Nav()
+tabler = Tabler()
+
+import nav as nav_module
 
 def security_init_kwargs():
     """

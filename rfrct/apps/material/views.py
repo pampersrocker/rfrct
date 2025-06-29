@@ -9,9 +9,9 @@ app = Blueprint('material', __name__, template_folder='templates')
 
 @app.route('/')
 def index():
-    return render_template('material/index.html')
+    return render_template('material/overview.html.j2', materials=Material.objects.all(), create_button_text="Create Material", create_endpoint_url=url_for('material.create'))
 
-@app.route('/create')
+@app.route('/create', methods=['GET', 'POST'])
 def create():
     form = model_form(Material, exclude=["updated_at", "created_at"])()
     if form.validate_on_submit():
@@ -20,4 +20,4 @@ def create():
         material.save()
         flash("Material created successfully", "success")
         return redirect(url_for('material.index'))
-    return render_template('material/create.html', form=form)
+    return render_template('tabler/create.html.j2', form=form, endpoint=url_for('material.create'), title='Create Material') 

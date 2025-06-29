@@ -8,9 +8,10 @@ flask-admin
 flask-debugtoolbar
 flask-login
 flask-mongoengine-3[wtf,toolbar]
-flask-security-too
+Flask-Security
 flask-socketio
 flask-testing
+flask-tabler
 flask-wtf
 pytest
 wheel

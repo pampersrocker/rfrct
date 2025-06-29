@@ -18,13 +18,13 @@ class MaterialType(nosql.Document):
     }
 
 class Material(nosql.Document):
-    name = nosql.StringField(max_length=255, required=True, unique=True)
-    description = nosql.StringField(max_length=255, required=True)
-    #material_type = nosql.ReferenceField(MaterialType)
+    name = nosql.StringField(max_length=255, required=True, unique=True, verbose_name="Material Name")
+    description = nosql.StringField(max_length=255, required=True, verbose_name="Material Description")
+    material_type = nosql.ReferenceField(document_type=MaterialType, verbose_name="Material Type")
     created_at = nosql.DateTimeField(default=datetime.datetime.now)
     updated_at = nosql.DateTimeField(default=datetime.datetime.now)
-    price_per_square_meter = nosql.DecimalField(min_value=0, required=True, symbol="mm")
-    thickness = nosql.DecimalField(min_value=0, required=True)
+    price_per_square_meter = nosql.DecimalField(min_value=0, required=True, verbose_name="Price per Square Meter")
+    thickness = nosql.DecimalField(min_value=0, required=True, verbose_name="Thickness")
 
     def __unicode__(self):
         return self.name
